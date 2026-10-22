@@ -14,7 +14,7 @@ get_header();
 
     <header class="page-header">
         <h1 class="page-title">
-            Latest Articles
+            <?php esc_html_e( 'Latest Articles', 'emberpress' ); ?>
         </h1>
     </header>
 
@@ -25,35 +25,44 @@ get_header();
             <article <?php post_class(); ?>>
 
                 <?php if ( has_post_thumbnail() ) : ?>
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail( 'medium' ); ?>
+                    <a href="<?php echo esc_url( get_permalink() ); ?>">
+                        <?php
+                        the_post_thumbnail(
+                            'medium',
+                            array(
+                                'alt' => the_title_attribute(
+                                    array(
+                                        'echo' => false,
+                                    )
+                                ),
+                            )
+                        );
+                        ?>
                     </a>
                 <?php endif; ?>
 
-                
-<div class="entry-meta">
-    <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
-        <?php echo esc_html( get_the_date() ); ?>
-    </time>
+                <div class="entry-meta">
+                    <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+                        <?php echo esc_html( get_the_date() ); ?>
+                    </time>
 
-    <span class="entry-categories">
-        <?php the_category( ', ' ); ?>
-    </span>
-</div>
+                    <span class="entry-categories">
+                        <?php the_category( ', ' ); ?>
+                    </span>
+                </div>
 
-<h2 class="entry-title">
-    <a href="<?php the_permalink(); ?>">
-        <?php the_title(); ?>
-    </a>
-</h2>
+                <h2 class="entry-title">
+                    <a href="<?php echo esc_url( get_permalink() ); ?>">
+                        <?php echo esc_html( get_the_title() ); ?>
+                    </a>
+                </h2>
 
-<?php the_excerpt(); ?>
+                <?php the_excerpt(); ?>
 
-<a class="read-more-link" href="<?php echo esc_url( get_permalink() ); ?>">
-    <?php esc_html_e( 'Read More', 'emberpress' ); ?>
-    <span aria-hidden="true">&rarr;</span>
-</a>
-
+                <a class="read-more-link" href="<?php echo esc_url( get_permalink() ); ?>">
+                    <?php esc_html_e( 'Read More', 'emberpress' ); ?>
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
 
             </article>
 
@@ -62,15 +71,15 @@ get_header();
         <?php
         the_posts_pagination(
             array(
-                'prev_text' => '&larr; Previous',
-                'next_text' => 'Next &rarr;',
+                'prev_text' => esc_html__( 'Previous', 'emberpress' ),
+                'next_text' => esc_html__( 'Next', 'emberpress' ),
             )
         );
         ?>
 
     <?php else : ?>
 
-        <p>No articles have been published yet.</p>
+        <p><?php esc_html_e( 'No articles have been published yet.', 'emberpress' ); ?></p>
 
     <?php endif; ?>
 
@@ -78,3 +87,4 @@ get_header();
 
 <?php
 get_footer();
+?>
