@@ -1,0 +1,72 @@
+
+<?php
+
+/**
+ * The template for displaying category archives.
+ *
+ * @package EmberPress
+ */
+
+get_header();
+?>
+
+<main id="primary" class="site-main">
+
+    <header class="page-header">
+
+        <h1 class="page-title">
+            <?php single_cat_title(); ?>
+        </h1>
+
+        <?php
+        the_archive_description(
+            '<div class="archive-description">',
+            '</div>'
+        );
+        ?>
+
+    </header>
+
+    <?php if ( have_posts() ) : ?>
+
+        <?php while ( have_posts() ) : the_post(); ?>
+
+            <article <?php post_class(); ?>>
+
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail( 'medium' ); ?>
+                    </a>
+                <?php endif; ?>
+
+                <h2 class="entry-title">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_title(); ?>
+                    </a>
+                </h2>
+
+                <?php the_excerpt(); ?>
+
+            </article>
+
+        <?php endwhile; ?>
+
+        <?php
+        the_posts_pagination(
+            array(
+                'prev_text' => '&larr; Previous',
+                'next_text' => 'Next &rarr;',
+            )
+        );
+        ?>
+
+    <?php else : ?>
+
+        <p>No posts were found in this category.</p>
+
+    <?php endif; ?>
+
+</main>
+
+<?php
+get_footer();
