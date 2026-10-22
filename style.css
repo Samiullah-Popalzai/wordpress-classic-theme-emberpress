@@ -932,3 +932,46 @@ select:focus-visible {
     outline: 2px solid #252a34;
     outline-offset: 4px;
 }
+
+/* Article card layout */
+.site-main article.post {
+    margin-bottom: 32px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgb(37 42 52 / 4%);
+}
+
+.site-main article.post > a:first-child {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.site-main article.post > a:first-child img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 7px;
+}
+
+.site-main article.post .entry-title {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.site-main article.post .entry-title a {
+    text-decoration: none;
+}
+
+.site-main article.post .entry-title a:hover {
+    color: #b7791f;
+}
+
+@media (max-width: 480px) {
+    .site-main article.post {
+        margin-bottom: 22px;
+        padding: 16px;
+        border-radius: 8px;
+    }
+}
