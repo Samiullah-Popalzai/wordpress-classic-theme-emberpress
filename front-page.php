@@ -30,13 +30,30 @@ get_header();
                     </a>
                 <?php endif; ?>
 
-                <h2 class="entry-title">
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_title(); ?>
-                    </a>
-                </h2>
+                
+<div class="entry-meta">
+    <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+        <?php echo esc_html( get_the_date() ); ?>
+    </time>
 
-                <?php the_excerpt(); ?>
+    <span class="entry-categories">
+        <?php the_category( ', ' ); ?>
+    </span>
+</div>
+
+<h2 class="entry-title">
+    <a href="<?php the_permalink(); ?>">
+        <?php the_title(); ?>
+    </a>
+</h2>
+
+<?php the_excerpt(); ?>
+
+<a class="read-more-link" href="<?php echo esc_url( get_permalink() ); ?>">
+    <?php esc_html_e( 'Read More', 'emberpress' ); ?>
+    <span aria-hidden="true">&rarr;</span>
+</a>
+
 
             </article>
 

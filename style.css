@@ -909,3 +909,26 @@ select:focus-visible {
         padding: 3px 7px;
     }
 }
+
+/* Read more link */
+.read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    color: #805515;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.read-more-link:hover,
+.read-more-link:focus-visible {
+    color: #b7791f;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.read-more-link:focus-visible {
+    outline: 2px solid #252a34;
+    outline-offset: 4px;
+}
