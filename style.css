@@ -11,3 +11,8 @@ Text Domain: emberpress
 */
 
 
+.site-header p {
+    color: #666666;
+    font-size: 16px;
+    margin: 0;
+}

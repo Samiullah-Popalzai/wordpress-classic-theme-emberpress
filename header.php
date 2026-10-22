@@ -13,5 +13,13 @@
     <?php wp_body_open() ?>
     <header class="site-header">
         <a href="<?php home_url('/') ?>"> <?php bloginfo('name') ?> </a>
-
+<nav class="primary-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'emberpress' ); ?>">
+        <?php
+        wp_nav_menu(
+            array(
+                'theme_location' => 'primary',
+            )
+        );
+        ?>
+    </nav>
     </header>
