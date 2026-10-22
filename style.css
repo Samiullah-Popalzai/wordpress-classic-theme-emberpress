@@ -851,3 +851,61 @@ select:focus-visible {
         animation-iteration-count: 1 !important;
     }
 }
+
+
+
+/* Post metadata */
+.entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+    color: #687386;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.entry-meta time {
+    display: inline-block;
+}
+
+.entry-categories {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.entry-categories a {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background-color: #f3e8d3;
+    color: #805515;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.entry-categories a:hover,
+.entry-categories a:focus-visible {
+    background-color: #b7791f;
+    color: #ffffff;
+}
+
+.entry-categories a:focus-visible {
+    outline: 2px solid #252a34;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .entry-meta {
+        gap: 6px;
+        font-size: 0.8125rem;
+    }
+
+    .entry-categories a {
+        padding: 3px 7px;
+    }
+}
