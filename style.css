@@ -1,3 +1,4 @@
+
 /*
 Theme Name: EmberPress
 Author: Samiullah Popalzai
@@ -10,9 +11,843 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: emberpress
 */
 
+/* ========================================
+   1. Design tokens and reset
+======================================== */
 
-.site-header p {
-    color: #666666;
-    font-size: 16px;
+:root {
+    --color-primary: #B7791F;
+    --color-primary-dark: #8F5A12;
+    --color-text: #252A34;
+    --color-text-muted: #667085;
+    --color-background: #F7F8FA;
+    --color-surface: #FFFFFF;
+    --color-border: #E5E7EB;
+    --color-border-strong: #D0D5DD;
+    --color-focus: #B7791F;
+    --container-width: 1080px;
+    --content-width: 760px;
+    --radius-small: 6px;
+    --radius-medium: 12px;
+    --shadow-card: 0 4px 18px rgba(37, 42, 52, 0.04);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
     margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer;
+}
+
+a {
+    color: var(--color-primary-dark);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 160ms ease;
+}
+
+a:hover {
+    color: var(--color-primary);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    color: var(--color-text);
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+hr {
+    margin: 32px 0;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+blockquote {
+    margin: 28px 0;
+    padding: 8px 0 8px 22px;
+    border-left: 4px solid var(--color-primary);
+    color: var(--color-text-muted);
+}
+
+code,
+pre {
+    font-family: Consolas, Monaco, monospace;
+}
+
+pre {
+    max-width: 100%;
+    padding: 20px;
+    overflow-x: auto;
+    background: #F0F1F4;
+    border-radius: var(--radius-small);
+}
+
+table {
+    width: 100%;
+    margin-bottom: 24px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+/* ========================================
+   2. Site header and branding
+======================================== */
+
+.site-header {
+    padding: 34px 20px 26px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.site-header > a {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: var(--color-text);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.25;
+    text-decoration: none;
+}
+
+.site-header > a:hover {
+    color: var(--color-primary-dark);
+}
+
+.site-header > p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 15px;
+}
+
+/* ========================================
+   3. Primary navigation
+======================================== */
+
+.primary-navigation {
+    margin-top: 24px;
+}
+
+.primary-navigation ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.primary-navigation li {
+    margin: 0;
+    padding: 0;
+}
+
+.primary-navigation a {
+    display: inline-block;
+    padding: 5px 0;
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.primary-navigation a:hover,
+.primary-navigation .current-menu-item > a,
+.primary-navigation .current_page_item > a {
+    color: var(--color-primary-dark);
+}
+
+/* ========================================
+   4. Main content layout
+======================================== */
+
+.site-main {
+    width: min(calc(100% - 40px), var(--container-width));
+    min-width: 0;
+    margin: 48px auto 64px;
+}
+
+.content-area {
+    width: 100%;
+    min-width: 0;
+}
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-title {
+    margin-bottom: 14px;
+    font-size: clamp(28px, 4vw, 38px);
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+}
+
+.archive-description {
+    color: var(--color-text-muted);
+}
+
+.archive-description > :last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   5. Post cards and post listings
+======================================== */
+
+.site-main article {
+    min-width: 0;
+    margin-bottom: 24px;
+    padding: 26px;
+    overflow-wrap: anywhere;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-card);
+}
+
+.site-main article img {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: var(--radius-small);
+}
+
+.site-main article > a:first-child img {
+    transition: opacity 180ms ease;
+}
+
+.site-main article > a:first-child:hover img {
+    opacity: 0.9;
+}
+
+.site-main article h2,
+.site-main article .entry-title {
+    margin: 0 0 12px;
+    font-size: clamp(21px, 3vw, 26px);
+    letter-spacing: -0.35px;
+    line-height: 1.4;
+}
+
+.site-main article h2 a,
+.site-main article .entry-title a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.site-main article h2 a:hover,
+.site-main article .entry-title a:hover {
+    color: var(--color-primary-dark);
+}
+
+.site-main article p {
+    color: #596273;
+}
+
+.site-main article > :last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   6. Single post and page content
+======================================== */
+
+.entry-header {
+    margin-bottom: 26px;
+}
+
+.entry-header .entry-title {
+    margin-bottom: 16px;
+    font-size: clamp(30px, 5vw, 44px);
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+.entry-meta a {
+    color: var(--color-text-muted);
+}
+
+.entry-thumbnail {
+    margin-bottom: 28px;
+}
+
+.entry-thumbnail img {
+    width: 100%;
+    max-height: 520px;
+    border-radius: var(--radius-medium);
+    object-fit: cover;
+}
+
+.entry-content {
+    overflow-wrap: anywhere;
+}
+
+.entry-content > :last-child {
+    margin-bottom: 0;
+}
+
+.entry-content img {
+    margin: 24px auto;
+    border-radius: var(--radius-small);
+}
+
+.entry-content ul,
+.entry-content ol {
+    margin-bottom: 24px;
+    padding-left: 26px;
+}
+
+.entry-content li {
+    margin-bottom: 8px;
+}
+
+.entry-content figure {
+    max-width: 100%;
+    margin: 28px 0;
+}
+
+.entry-content figcaption {
+    margin-top: 8px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.entry-content iframe,
+.entry-content video,
+.entry-content embed {
+    max-width: 100%;
+}
+
+/* ========================================
+   7. Previous and next post navigation
+======================================== */
+
+.post-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 28px 0;
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+.post-navigation > div {
+    flex: 1 1 220px;
+}
+
+.next-post {
+    text-align: right;
+}
+
+/* ========================================
+   8. Search form
+======================================== */
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 480px;
+    margin: 22px auto 0;
+}
+
+.search-form-label {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.search-field {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-small);
+}
+
+.search-field::placeholder {
+    color: #858B98;
+}
+
+.search-submit {
+    flex: 0 0 auto;
+    min-height: 46px;
+    padding: 10px 18px;
+    color: #FFFFFF;
+    background: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-small);
+    font-weight: 700;
+}
+
+.search-submit:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+/* ========================================
+   9. Search and archive pagination
+======================================== */
+
+.search-pagination,
+.nav-links {
+    margin-top: 32px;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.page-numbers {
+    display: inline-flex;
+    min-width: 42px;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+    text-decoration: none;
+}
+
+.page-numbers.current {
+    color: #FFFFFF;
+    background: var(--color-text);
+    border-color: var(--color-text);
+}
+
+.page-numbers:hover:not(.current) {
+    color: var(--color-primary-dark);
+    border-color: var(--color-primary);
+}
+
+/* ========================================
+   10. Comments
+======================================== */
+
+.comments-area {
+    margin-top: 42px;
+    padding: 26px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+.comments-title {
+    margin-bottom: 24px;
+    font-size: 25px;
+}
+
+.comment-list {
+    margin: 0 0 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.comment-list .comment {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--color-background);
+    border-radius: var(--radius-small);
+}
+
+.comment-list .children {
+    margin-top: 20px;
+    padding-left: 22px;
+    list-style: none;
+}
+
+.comment-author {
+    font-weight: 700;
+}
+
+.comment-author img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.comment-metadata {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.comment-metadata a {
+    color: var(--color-text-muted);
+}
+
+.comment-content {
+    margin-top: 14px;
+    overflow-wrap: anywhere;
+}
+
+.comment-content > :last-child {
+    margin-bottom: 0;
+}
+
+.reply {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.comment-respond {
+    margin-top: 30px;
+}
+
+.comment-reply-title {
+    font-size: 23px;
+}
+
+.comment-form p {
+    margin-bottom: 16px;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.comment-form input:not([type="checkbox"]):not([type="submit"]),
+.comment-form textarea {
+    width: 100%;
+    padding: 11px 12px;
+    color: var(--color-text);
+    background: #FFFFFF;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-small);
+}
+
+.comment-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.comment-form .submit {
+    padding: 12px 20px;
+    color: #FFFFFF;
+    background: var(--color-text);
+    border: 0;
+    border-radius: var(--radius-small);
+    font-weight: 700;
+}
+
+.comment-form .submit:hover {
+    background: var(--color-primary-dark);
+}
+
+.no-comments {
+    margin-top: 20px;
+    color: var(--color-text-muted);
+    font-size: 14px;
+}
+
+/* ========================================
+   11. 404 error page
+======================================== */
+
+.error-404 {
+    padding: 36px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    text-align: center;
+}
+
+.error-404 .page-title {
+    margin-bottom: 18px;
+}
+
+.error-404 .page-content > :last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   12. Footer
+======================================== */
+
+.site-footer {
+    padding: 30px 20px;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* ========================================
+   13. Accessibility
+======================================== */
+
+.screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.screen-reader-text:focus {
+    z-index: 100000;
+    top: 8px;
+    left: 8px;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 12px 16px;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    color: var(--color-text);
+    background: #FFFFFF;
+    border: 2px solid var(--color-focus);
+    border-radius: var(--radius-small);
+    white-space: normal;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+/* ========================================
+   14. Responsive layout
+======================================== */
+
+@media (max-width: 768px) {
+    .site-main {
+        width: calc(100% - 32px);
+        margin-top: 32px;
+        margin-bottom: 44px;
+    }
+
+    .site-header {
+        padding: 28px 16px 22px;
+    }
+
+    .site-header > a {
+        font-size: 30px;
+    }
+
+    .primary-navigation ul {
+        gap: 8px 18px;
+    }
+
+    .site-main article {
+        padding: 22px;
+    }
+
+    .comments-area {
+        padding: 22px;
+    }
+
+    .entry-meta {
+        gap: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .site-header {
+        padding: 24px 14px 18px;
+    }
+
+    .site-header > a {
+        font-size: 27px;
+        letter-spacing: -0.7px;
+    }
+
+    .site-header > p {
+        font-size: 14px;
+    }
+
+    .primary-navigation {
+        margin-top: 18px;
+    }
+
+    .primary-navigation ul {
+        gap: 6px 14px;
+    }
+
+    .primary-navigation a {
+        font-size: 13px;
+    }
+
+    .site-main {
+        width: calc(100% - 24px);
+        margin-top: 24px;
+        margin-bottom: 36px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .site-main article {
+        margin-bottom: 18px;
+        padding: 17px;
+        border-radius: 9px;
+    }
+
+    .site-main article h2,
+    .site-main article .entry-title {
+        font-size: 21px;
+    }
+
+    .entry-header .entry-title {
+        font-size: 30px;
+    }
+
+    .entry-meta {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-submit {
+        width: 100%;
+    }
+
+    .post-navigation {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .next-post {
+        text-align: left;
+    }
+
+    .comments-area {
+        padding: 17px;
+    }
+
+    .comment-list .comment {
+        padding: 14px;
+    }
+
+    .comment-list .children {
+        padding-left: 12px;
+    }
+
+    .error-404 {
+        padding: 24px 16px;
+    }
+
+    .site-footer {
+        padding: 24px 16px;
+    }
+}
+
+/* ========================================
+   15. Reduced motion preference
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
