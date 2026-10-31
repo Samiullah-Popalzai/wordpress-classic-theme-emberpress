@@ -9,6 +9,24 @@ The theme provides a clean, responsive foundation for content-focused websites u
 
 > **Copyright Notice:** EmberPress is proprietary portfolio work. All rights reserved. Access is provided for recruiter and potential employer evaluation only. See the [LICENSE](LICENSE) file for the applicable terms.
 
+### All Posts
+
+![All Posts](screenshots/all-posts.png)
+
+*The homepage displaying the latest blog posts.*
+
+### Single Post
+
+![Single Post](screenshots/2.jpeg)
+
+*An individual blog post with its content and metadata.*
+
+### Search Results
+
+![Search Results](screenshots/search-result.png)
+
+*Search results displaying posts relevant to the search query.*
+
 ## Project Overview
 
 - **Project:** EmberPress
